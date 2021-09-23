@@ -76,7 +76,7 @@ class Query
      * @param PardotApi $api
      * @return void
      */
-    public static function obj(PardotApi $api)
+    public static function obj(PardotApi $api): Query
     {
         return new static($api);
     }
@@ -87,7 +87,7 @@ class Query
      * @param string $object
      * @return Query
      */
-    protected function setObject(string $object): Query
+    function setObject(string $object): Query
     {
         $this->object = $object;
         return $this;
@@ -99,7 +99,7 @@ class Query
      * @param string $operator
      * @return Query
      */
-    protected function setOperator(string $operator): Query
+    function setOperator(string $operator): Query
     {
         $this->operator = $operator;
         return $this;
@@ -111,7 +111,7 @@ class Query
      * @param array $data
      * @return Query
      */
-    protected function setData(array $data): Query
+    function setData(array $data): Query
     {
         $this->data = $data;
         return $this;
@@ -130,7 +130,7 @@ class Query
      * @return mixed
      * @throws Exception
      */
-    protected function request(string $property)
+    function request(string $property)
     {
         if(!$this->api->getAuthenticator()->isAuthenticated()) {
             $this->api->getAuthenticator()->doAuthentication();
