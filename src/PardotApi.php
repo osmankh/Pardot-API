@@ -299,14 +299,17 @@ class PardotApi implements PardotApiInterface
      * @param string $object
      * @param string $operator
      * @param array $data
+     * @param string|null $property
      * @return mixed
+     * @throws Exception
      */
-    public function request(string $object, string $operator, array $data = [])
+    public function request(string $object, string $operator, array $data = [], string $property = Null)
     {
+        if (empty($property)) $property = $object;
         return Query::obj($this)
             ->setObject($object)
             ->setOperator($operator)
             ->setData($data)
-            ->request($object);
+            ->request($property);
     }
 }

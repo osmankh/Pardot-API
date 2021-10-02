@@ -1,7 +1,7 @@
 {
     "name": "osmankh/pardot-api",
     "description": "PHP package to interact with the Pardot API",
-    "homepage": "https://github.com/osmankh/Pardot-API.git",
+    "homepage": "https://github.com/osmankh/pardot-api",
     "keywords": [
         "php",
         "pardot"

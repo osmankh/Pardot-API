@@ -2,6 +2,8 @@
 
 namespace CyberDuck\PardotApi\Query;
 
+use CyberDuck\PardotApi\Traits\CanRead;
+
 /**
  * List Query object representation
  * 
@@ -16,5 +18,12 @@ namespace CyberDuck\PardotApi\Query;
  */
 class ListsQuery extends Query
 {
+    use CanRead;
 
+    /**
+     * Object name
+     *
+     * @var string
+     */
+    protected $object = 'list';
 }

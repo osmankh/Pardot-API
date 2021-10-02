@@ -7,7 +7,6 @@ use CyberDuck\PardotApi\Contract\PardotApi;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use stdClass;
 
 /**
  * Base query class for all Pardot API queries
@@ -165,7 +164,7 @@ class Query
      *
      * @return string
      */
-    protected function getQueryEndpoint(): string
+    function getQueryEndpoint(): string
     {
         return sprintf(
             $this->endpoint,
@@ -180,7 +179,7 @@ class Query
      *
      * @return array
      */
-    protected function getQueryRequestOptions(): array
+    function getQueryRequestOptions(): array
     {
         return [
             'headers' => [
