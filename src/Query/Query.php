@@ -136,25 +136,18 @@ class Query
         }
 
         if($this->api->getAuthenticator()->isAuthenticatedSuccessfully()) {
-            try {
-                $client = new Client();
-                $response = $client->request('POST',
-                    $this->getQueryEndpoint(),
-                    $this->getQueryRequestOptions()
-                );
-                if($response->getStatusCode() !== 200) {
-                    throw new Exception('Pardot query error: 200 response not returned');
-                }
-                $namespace = $this->api->getFormatter();
-                $formatter = new $namespace((string) $response->getBody(), $property);
-
-                return $formatter->getData()->{$property};
-            } catch(Exception $e) {
-                if($this->api->getDebug() === true) {
-                    echo $e->getMessage();
-                    die;
-                }
+            $client = new Client();
+            $response = $client->request('POST',
+                $this->getQueryEndpoint(),
+                $this->getQueryRequestOptions()
+            );
+            if($response->getStatusCode() !== 200) {
+                throw new Exception('Pardot query error: 200 response not returned');
             }
+            $namespace = $this->api->getFormatter();
+            $formatter = new $namespace((string) $response->getBody(), $property);
+
+            return $formatter->getData()->{$property};
         }
         return null;
     }
