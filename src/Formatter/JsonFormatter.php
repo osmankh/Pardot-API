@@ -55,28 +55,13 @@ class JsonFormatter
         $data = json_decode($this->data);
 
         if(!is_object($data)) {
-            $message = 'Pardot API error: invalid response';
-            if($this->api->getDebug() === true) {
-                echo $message;
-                die;
-            }
-            throw new Exception($message);
+            throw new Exception('Pardot API error: invalid response');
         }
         if(property_exists($data, 'err')) {
-            $message = sprintf('Pardot API error: %s', $data->err);
-            if($this->api->getDebug() === true) {
-                echo $message;
-                die;
-            }
-            throw new Exception($message);
+            throw new Exception(sprintf('Pardot API error: %s', $data->err));
         }
         if(!property_exists($data, $this->property)) {
-            $message = sprintf('Pardot API error: cannot find property %s in response', $this->property);
-            if($this->api->getDebug() === true) {
-                echo $message;
-                die;
-            }
-            throw new Exception($message);
+            throw new Exception(sprintf('Pardot API error: cannot find property %s in response', $this->property));
         }
         return $data;
     }
