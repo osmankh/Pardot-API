@@ -153,6 +153,8 @@ class PardotAuthenticator implements PardotAuthenticatorInterface
             if($this->api->getDebug() === true) {
                 echo $e->getMessage();
                 die;
+            } else {
+                throw $e;
             }
         }
         return $this;
